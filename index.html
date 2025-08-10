@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Drive In Canada — Premium Driving School (V2)</title>
+      <!-- Tailwind CSS -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <!-- Alpine.js -->
+      <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      <!-- Lucide Icons -->
+      <script src="https://unpkg.com/lucide@latest"></script>
+      <!-- Tailwind config -->
+      <script>
+         tailwind.config = {
+           theme: {
+             extend: {
+               colors: {
+                 brand: {
+                   green: {
+                     50:'#ecfdf5',100:'#d1fae5',200:'#a7f3d0',300:'#6ee7b7',400:'#34d399',
+                     500:'#10b981',600:'#059669',700:'#047857',800:'#065f46',900:'#064e3b'
+                   },
+                   red: {
+                     50:'#fef2f2',100:'#fee2e2',200:'#fecaca',300:'#fca5a5',400:'#f87171',
+                     500:'#ef4444',600:'#dc2626',700:'#b91c1c',800:'#991b1b',900:'#7f1d1d'
+                   }
+                 }
+               },
+               animation: {
+                 'bounce-in': 'bounceIn .7s cubic-bezier(.68,-.55,.265,1.55)',
+                 float: 'float 3s ease-in-out infinite',
+                 'pulse-slow': 'pulse 3s cubic-bezier(.4,0,.6,1) infinite',
+                 'spin-slow': 'spin 8s linear infinite'
+               },
+               keyframes: {
+                 bounceIn: {
+                   '0%': { transform:'scale(.96)', opacity:'0' },
+                   '50%': { transform:'scale(1.02)' },
+                   '100%': { transform:'scale(1)', opacity:'1' }
+                 },
+                 float: { '0%,100%':{transform:'translateY(0)'}, '50%':{transform:'translateY(-8px)'} }
+               },
+               boxShadow: {
+                 soft: '0 6px 30px rgba(2,6,23,.06)',
+                 glow: '0 10px 30px rgba(16,185,129,.25)'
+               }
+             }
+           }
+         }
+      </script>
+      <style>
+         html { scroll-behavior: smooth; }
+         :root { --nav-height: 64px; }
+         .hide-scrollbar::-webkit-scrollbar{display:none}
+         .hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+         /* Glassmorphism (desktop a bit more opaque) */
+         .glass{ background:rgba(255,255,255,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px) }
+         .glass-card{ background:rgba(255,255,255,.55); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px) }
+         /* Reveal on scroll */
+         .appear{ opacity:0; transform:translateY(24px); transition:all .6s cubic-bezier(.4,0,.2,1) }
+         .appear.visible{ opacity:1; transform:translateY(0) }
+         /* Video overlay */
+         .video-overlay::after{ content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.65)); pointer-events:none }
+         /* Card hover */
+         .card-hover{ transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background-color .25s ease }
+         .card-hover:hover{ transform:translateY(-6px); box-shadow:0 16px 40px rgba(2,6,23,.08); border-color:rgba(5,150,105,.4) }
+         /* Floating nav hide/show */
+         .nav-hidden{ transform:translateY(100%) }
+         /* Desktop nav active underline */
+         .nav-link{ position:relative; padding-bottom:6px }
+         .nav-link.active::after{
+         content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
+         background:linear-gradient(90deg,#10b981,#ef4444); border-radius:2px
+         }
+         /* Odometer (rolling digits) */
+         .odometer{ display:inline-flex; align-items:baseline; gap:2px; font-variant-numeric:tabular-nums }
+         .digit{ position:relative; width:.62em; height:1.15em; overflow:hidden; display:inline-block }
+         .digit-inner{ position:absolute; left:0; top:0; transition:transform 1.1s cubic-bezier(.2,.9,.2,1) }
+         .digit-inner span{ display:block; height:1.15em; line-height:1.15em }
+         .sep{ width:.4em; text-align:center; opacity:.7 }
+         /* Animated GOLD border for stats cards */
+         .gold-border{ position:relative; border-radius:1.25rem }
+         .gold-border::before{
+         content:''; position:absolute; inset:-1.5px; padding:1.5px; border-radius:inherit;
+         background:conic-gradient(#f59e0b, #fde68a, #f59e0b, #d97706, #f59e0b);
+         -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+         mask: linear-gradient(#000 0 0) content-box,
+         linear-gradient(#000 0 0);
+         -webkit-mask-composite:xor; mask-composite:exclude;
+         opacity:.65; transform:rotate(0deg); animation:spin 10s linear infinite
+         }
+         .gold-border:hover{ border-radius:9999px; transition:border-radius .3s ease }
+         .gold-border:hover::before{ opacity:1; }
+         /* Disable hover rounding on gold stat cards */
+         .gold-border,
+         .gold-border:hover {
+         border-radius: 1.25rem !important; /* same as rounded-2xl */
+         }
+         /* Section anchor offset */
+         section[id]{ scroll-margin-top:calc(var(--nav-height) + 20px) }
+      </style>
+   </head>
+   <body class="bg-white text-black hide-scrollbar"
+      x-data="{ mobileMenu:false, scrollY:0, lastScrollY:0, navHidden:false,
+      init(){ this.handleScroll(); window.addEventListener('scroll', ()=> this.handleScroll()); },
+      handleScroll(){ this.scrollY=window.scrollY; this.navHidden=(this.scrollY>this.lastScrollY && this.scrollY>100); this.lastScrollY=this.scrollY; }
+      }">
+      <!-- Desktop Nav -->
+      <nav class="hidden md:block fixed top-0 left-0 right-0 z-50 transition-transform duration-300 glass border-b border-black/5 backdrop-saturate-150"
+         style="height: var(--nav-height)" :class="{ '-translate-y-full': navHidden }" aria-label="Primary">
+         <div class="max-w-7xl mx-auto px-6 h-full">
+            <div class="flex items-center justify-between h-full">
+               <a href="#home" class="flex items-center gap-2 group">
+               <i data-lucide="car" class="w-7 h-7 text-brand-green-700"></i>
+               <span class="text-lg font-semibold tracking-tight group-hover:text-brand-green-800">Drive In Canada</span>
+               </a>
+               <div class="flex items-center gap-8">
+                  <a data-nav="home" href="#home" class="nav-link hover:text-brand-green-800 transition-colors">Home</a>
+                  <a data-nav="services" href="#services" class="nav-link hover:text-brand-green-800 transition-colors">Services</a>
+                  <a data-nav="pricing" href="#pricing" class="nav-link hover:text-brand-green-800 transition-colors">Pricing</a>
+                  <a data-nav="about" href="#about" class="nav-link hover:text-brand-green-800 transition-colors">About</a>
+                  <a data-nav="testimonials" href="#testimonials" class="nav-link hover:text-brand-green-800 transition-colors">Reviews</a>
+                  <a data-nav="contact" href="#contact" class="nav-link hover:text-brand-green-800 transition-colors">Contact</a>
+                  <a href="tel:6478926797" class="inline-flex items-center gap-2 bg-brand-red-600 text-white px-5 py-2 rounded-full hover:bg-brand-red-700 focus:outline-none focus:ring-2 focus:ring-brand-red-300">
+                  <i data-lucide="phone" class="w-4 h-4"></i> Call Now
+                  </a>
+               </div>
+            </div>
+         </div>
+      </nav>
+      <!-- Mobile Bottom Nav -->
+      <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300" :class="{ 'nav-hidden': navHidden }" aria-label="Mobile">
+         <div class="glass rounded-full shadow-soft px-5 py-2 border border-black/5">
+            <div class="flex items-center gap-4">
+               <a data-nav="home" href="#home" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Home"><i data-lucide="home" class="w-5 h-5"></i></a>
+               <a data-nav="services" href="#services" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Services"><i data-lucide="book-open" class="w-5 h-5"></i></a>
+               <a data-nav="pricing" href="#pricing" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Pricing"><i data-lucide="tag" class="w-5 h-5"></i></a>
+               <a data-nav="contact" href="#contact" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Contact"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+               <a href="tel:6478926797" class="p-2 rounded-full bg-brand-red-600 text-white hover:bg-brand-red-700 transition" aria-label="Call"><i data-lucide="phone" class="w-5 h-5"></i></a>
+            </div>
+         </div>
+      </nav>
+      <!-- Hero -->
+      <section id="home" class="relative h-[92vh] md:h-screen video-overlay overflow-hidden">
+         <!-- Full-bleed YouTube background -->
+         <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+            <div
+               class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+               w-[100vw] h-[56.25vw] min-w-[177.78vh] min-h-[100vh]">
+               <iframe
+                  class="w-full h-full"
+                  src="https://www.youtube.com/embed/kvpSRqb4r-s?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=kvpSRqb4r-s&fs=0&iv_load_policy=3&disablekb=1"
+                  title="Background driving video"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media">
+               </iframe>
+            </div>
+         </div>
+         <div class="relative z-10 h-full flex items-center justify-center text-white">
+            <div class="text-center px-6 space-y-6 max-w-3xl" x-data="{show:false}" x-init="setTimeout(()=> show=true, 80)">
+               <h1 class="text-4xl md:text-6xl font-semibold tracking-tight animate-bounce-in" x-show="show" x-transition>Drive In Canada</h1>
+               <p class="text-lg md:text-2xl text-white/90 opacity-0" x-show="show" x-transition.delay.150ms :class="{ 'opacity-100': show }">MTO-approved training that builds confident, defensive drivers.</p>
+               <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6 opacity-0" x-show="show" x-transition.delay.250ms :class="{ 'opacity-100': show }">
+                  <a href="#pricing" class="bg-white text-black px-7 py-3 rounded-full font-medium hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-brand-green-300">View Packages</a>
+                  <a href="#about" class="border border-white/80 text-white px-7 py-3 rounded-full font-medium hover:bg-white hover:text-black transition">Learn More</a>
+               </div>
+            </div>
+         </div>
+         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-float" aria-hidden="true">
+            <i data-lucide="chevron-down" class="w-7 h-7"></i>
+         </div>
+      </section>
+      <!-- Stats / Odometer with GOLD animated borders -->
+      <section id="stats" class="py-16 bg-white">
+         <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+               <!-- Card 1 -->
+               <div class="gold-border p-[1.5px] rounded-2xl appear">
+                  <div class="rounded-2xl bg-white/95 px-8 py-10 text-center group hover:bg-white transition">
+                     <div class="text-5xl font-semibold text-brand-green-700 mb-2">
+                        <span class="odometer" data-target="7000" id="odo-students"></span><span>+</span>
+                     </div>
+                     <p class="text-black/70">Students &amp; Counting</p>
+                  </div>
+               </div>
+               <!-- Card 2 -->
+               <div class="gold-border p-[1.5px] rounded-2xl appear">
+                  <div class="rounded-2xl bg-white/95 px-8 py-10 text-center group hover:bg-white transition">
+                     <div class="text-5xl font-semibold text-brand-green-700 mb-2">
+                        <span class="odometer" data-target="4250" id="odo-g2"></span>
+                     </div>
+                     <p class="text-black/70">Students Passed G2</p>
+                  </div>
+               </div>
+               <!-- Card 3 -->
+               <div class="gold-border p-[1.5px] rounded-2xl appear">
+                  <div class="rounded-2xl bg-white/95 px-8 py-10 text-center group hover:bg-white transition">
+                     <div class="text-5xl font-semibold text-brand-green-700 mb-2">
+                        <span class="odometer" data-target="3750" id="odo-g"></span>
+                     </div>
+                     <p class="text-black/70">Students Passed G</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Services -->
+      <section id="services" class="py-20 bg-slate-50">
+         <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 appear">
+               <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Our Services</h2>
+               <p class="mt-3 text-black/70">Structured training, modern techniques, and a patient approach.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+               <div class="glass-card rounded-2xl p-8 shadow-soft border border-black/5 card-hover appear">
+                  <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
+                     <i data-lucide="book" class="w-6 h-6 text-brand-green-700"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Classroom Sessions</h3>
+                  <p class="text-black/70">20 hours of in-class instruction: rules, defensive driving, hazards, preparation.</p>
+               </div>
+               <div class="glass-card rounded-2xl p-8 shadow-soft border border-black/5 card-hover appear">
+                  <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
+                     <i data-lucide="car" class="w-6 h-6 text-brand-green-700"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">In-Car Lessons</h3>
+                  <p class="text-black/70">10 hours behind-the-wheel coaching in dual-control vehicles with route-specific practice.</p>
+               </div>
+               <div class="glass-card rounded-2xl p-8 shadow-soft border border-black/5 card-hover appear">
+                  <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
+                     <i data-lucide="shield-check" class="w-6 h-6 text-brand-green-700"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Insurance Discount</h3>
+                  <p class="text-black/70">MTO-approved certificate recognized by insurers to reduce premiums.</p>
+               </div>
+               <div class="glass-card rounded-2xl p-8 shadow-soft border border-black/5 card-hover appear">
+                  <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
+                     <i data-lucide="clipboard-check" class="w-6 h-6 text-brand-green-700"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Road Test Services</h3>
+                  <p class="text-black/70">Test booking support and an instructor vehicle for your road test.</p>
+               </div>
+               <div class="glass-card rounded-2xl p-8 shadow-soft border border-black/5 card-hover appear">
+                  <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
+                     <i data-lucide="file-text" class="w-6 h-6 text-brand-green-700"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Temporary Permits</h3>
+                  <p class="text-black/70">Guidance to obtain and manage temporary permits and paperwork.</p>
+               </div>
+               <div class="glass-card rounded-2xl p-8 shadow-soft border border-black/5 card-hover appear">
+                  <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
+                     <i data-lucide="map" class="w-6 h-6 text-brand-green-700"></i>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Highway Training</h3>
+                  <p class="text-black/70">Targeted expressway sessions for merging, spacing, and lane discipline.</p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Pricing -->
+      <section id="pricing" class="py-20 bg-white">
+         <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 appear">
+               <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Choose Your Package</h2>
+               <p class="mt-3 text-black/70">Transparent pricing. No surprises.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+               <!-- Special -->
+               <div class="rounded-2xl p-8 glass-card border border-black/5 card-hover appear transition relative overflow-hidden group">
+                  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none" style="background: radial-gradient(600px 200px at 50% -20%, rgba(16,185,129,.15), transparent 60%);"></div>
+                  <div class="text-center relative">
+                     <h3 class="text-lg font-semibold mb-3">Special Package</h3>
+                     <div class="text-3xl font-semibold text-brand-green-700 mb-6">$199</div>
+                     <ul class="space-y-3 text-black/70 mb-8 text-left">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Basic training</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Flexible schedule</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Ideal for beginners</li>
+                     </ul>
+                     <a href="#contact" class="block w-full bg-black text-white py-3 rounded-full hover:bg-black/80">Get Started</a>
+                  </div>
+               </div>
+               <!-- Regular -->
+               <div class="rounded-2xl p-8 glass-card border border-black/5 card-hover appear transition relative overflow-hidden group">
+                  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none" style="background: radial-gradient(600px 200px at 50% -20%, rgba(239,68,68,.12), transparent 60%);"></div>
+                  <div class="text-center relative">
+                     <h3 class="text-lg font-semibold mb-3">Regular Package</h3>
+                     <div class="text-3xl font-semibold text-brand-green-700 mb-6">$399</div>
+                     <ul class="space-y-3 text-black/70 mb-8 text-left">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Complete course</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> In-car lessons</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Classroom sessions</li>
+                     </ul>
+                     <a href="#contact" class="block w-full bg-brand-red-600 text-white py-3 rounded-full hover:bg-brand-red-700">Get Started</a>
+                  </div>
+               </div>
+               <!-- Super (Featured) — badge now overlaps (no clipping) -->
+               <div class="rounded-2xl p-8 glass-card border-2 border-brand-green-300 shadow-glow card-hover appear relative overflow-visible group">
+                  <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                     <span class="bg-brand-green-700 text-white px-3 py-1 rounded-full text-xs tracking-wide shadow-soft">Most Popular</span>
+                  </div>
+                  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none" style="background: radial-gradient(700px 240px at 50% -20%, rgba(16,185,129,.18), transparent 60%);"></div>
+                  <div class="text-center relative">
+                     <h3 class="text-lg font-semibold mb-3">Super Package</h3>
+                     <div class="text-3xl font-semibold text-brand-green-700 mb-6">$599</div>
+                     <ul class="space-y-3 text-black/70 mb-8 text-left">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Everything included</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Insurance certificate</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Priority booking</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Up to 37% savings</li>
+                     </ul>
+                     <a href="#contact" class="block w-full bg-brand-green-700 text-white py-3 rounded-full hover:bg-brand-green-800">Get Started</a>
+                  </div>
+               </div>
+               <!-- Highway -->
+               <div class="rounded-2xl p-8 glass-card border border-black/5 card-hover appear transition relative overflow-hidden group">
+                  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none" style="background: radial-gradient(600px 200px at 50% -20%, rgba(16,185,129,.12), transparent 60%);"></div>
+                  <div class="text-center relative">
+                     <h3 class="text-lg font-semibold mb-3">Highway Training</h3>
+                     <div class="text-3xl font-semibold text-brand-green-700 mb-1">$50</div>
+                     <p class="text-black/60 mb-6">Per lesson</p>
+                     <ul class="space-y-3 text-black/70 mb-8 text-left">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Advanced coaching</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> Highway experience</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i> G test prep</li>
+                     </ul>
+                     <a href="#contact" class="block w-full bg-black text-white py-3 rounded-full hover:bg-black/80">Book Now</a>
+                  </div>
+               </div>
+            </div>
+            <!-- Satisfaction Guarantee -->
+            <div class="mt-14 max-w-3xl mx-auto text-center appear">
+               <div class="glass-card rounded-2xl border border-black/5 px-6 py-6">
+                  <div class="flex items-center justify-center gap-2 text-lg font-semibold">
+                     <i data-lucide="badge-check" class="w-5 h-5 text-brand-green-700"></i>
+                     <span>Your Satisfaction Guaranteed</span>
+                  </div>
+                  <p class="mt-3 text-sm text-black/80">
+                     Always check Driving Instructor’s Valid Licence before taking in car lessons.It is come to an attention that lots of driving schools have unqualified and fake driving instructors who don’t have valid instructor licence so please be careful before taking any lesson or commitment check their licences for your safety.Don’t be fool by the cheep prices and packages.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- About -->
+      <section id="about" class="py-20 bg-slate-50">
+         <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+               <div class="space-y-6 appear">
+                  <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">About: Drive In Canada</h2>
+                  <p class="text-lg">We sell peace of mind</p>
+                  <p class="text-black/80">My name is Raja. I was working as a General Manager in Euro Hotes London United Kingdom Ltd since 2000 to 2007. Then i started my own driving school in central London.I moved to Canada and started serving Mississauga Community to provide the best quality driving training</p>
+                  <p class="text-black/80">DRIVE IN CANADA  was established long ago and specializes in driving tuition. Over the past years, we have grown to be one of the most popular and successful driving schools in Mississauga Ontario, with over 7,000 passes locally.</p>
+                  <p class="text-black/80">Our fully-qualified and highly experienced instructors will carefully guide you through the learning stages, and when the day of your test arrives, you can be sure that you will have the necessary skill and knowledge to successfully pass your driving test.</p>
+                  <p class="text-black/80">DRIVE IN CANADA prides high standard of driving tuition to G2 and G , and by placing your driving ambitions in our hands, you are ensuring the best chance of early success and a high degree of driving skill, which will help to secure many years of safe driving. All of our lessons are conducted using the Honda Civic and Toyota Corolla models with Dual Controls.</p>
+                  <p class="text-black/80">EARLY ROAD TEST DATES FOR G2 &amp; G ARE ALWAYS AVAILABLE. OUR PASSING RATE IS 97%</p>
+               </div>
+               <div class="relative appear">
+                  <img src="https://i.ibb.co/ymJqfD3m/driver-1024x475.png" alt="Driving instruction" class="rounded-2xl shadow-soft border border-black/5" loading="lazy" />
+                  <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-5 shadow-soft border border-black/5">
+                     <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-green-50 border border-brand-green-100 flex items-center justify-center"><i data-lucide="star" class="w-5 h-5 text-brand-green-700"></i></div>
+                        <div>
+                           <div class="text-xl font-semibold">7,000+</div>
+                           <div class="text-black/70">Happy Students</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Promotional strip -->
+            <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 appear">
+               <div class="glass-card rounded-2xl p-6 border border-black/5">
+                  <h3 class="font-semibold mb-1">Incredible Service: The Proof Is In The Papers</h3>
+                  <p class="text-black/70">Drive In Canada was established a decade back and specializes in driving tuition. Over the past years, we have grown to be one of the most popular and successful driving schools in Mississauga, Ontario, with over 37,000 passes locally.</p>
+               </div>
+               <div class="glass-card rounded-2xl p-6 border border-black/5">
+                  <h3 class="font-semibold mb-1">Hurry! Sign Up Now!</h3>
+                  <p class="text-black/70">Best Price: Quality Service.</p>
+               </div>
+               <div class="glass-card rounded-2xl p-6 border border-black/5">
+                  <h3 class="font-semibold mb-1">Value You Can Trust</h3>
+                  <p class="text-black/70">Our price point is the best in the market and for a highly quality service. If you go to some other driving school with the joy that you are getting it for a less price, remember that you are totally wasting your time. We are sure that you will come back to us after failing!</p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Student Reviews: circular pill wedged between sections -->
+      <div class="relative z-20 -mt-5 mb-0 flex justify-center">
+         <div class="glass rounded-full shadow-soft border border-black/5 px-6 py-4 flex items-center gap-3">
+            <i data-lucide="message-square" class="w-5 h-5 text-brand-green-700"></i>
+            <span class="font-medium">Student Reviews: We love our students — and they love us.</span>
+         </div>
+      </div>
+      <!-- Testimonials -->
+      <section id="testimonials" class="py-20 bg-slate-50">
+         <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+               <div class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear">
+                  <div class="flex items-center gap-1 mb-3" aria-label="5 stars">
+                     <i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i>
+                  </div>
+                  <p class="mb-4 italic">“After failing 7 times with different instructors, Raja trained me with simple techniques for backing and parallel parking. I got my G2 today!”</p>
+                  <div class="font-medium">— Sandra</div>
+               </div>
+               <div class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear">
+                  <div class="flex items-center gap-1 mb-3" aria-label="5 stars">
+                     <i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i>
+                  </div>
+                  <p class="mb-4 italic">“I'm 83 years old and Mr. Raja taught me with patience and determination. I passed G2 first time!”</p>
+                  <div class="font-medium">— Sushila Sunani</div>
+               </div>
+               <div class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear">
+                  <div class="flex items-center gap-1 mb-3" aria-label="5 stars">
+                     <i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i>
+                  </div>
+                  <p class="mb-4 italic">“At the end of my G2 test, the examiner was impressed and asked who my instructor was. Raja gave me confidence!”</p>
+                  <div class="font-medium">— Mathew</div>
+               </div>
+               <div class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear">
+                  <div class="flex items-center gap-1 mb-3" aria-label="5 stars">
+                     <i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i>
+                  </div>
+                  <p class="mb-4 italic">“As a new immigrant from the Philippines, I passed first try! Now my daughters are Raja's students too.”</p>
+                  <div class="font-medium">— Paula</div>
+               </div>
+               <div class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear">
+                  <div class="flex items-center gap-1 mb-3" aria-label="5 stars">
+                     <i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i>
+                  </div>
+                  <p class="mb-4 italic">“Retired army officer here. After 3 failures elsewhere, Raja's unique parking techniques helped me pass G!”</p>
+                  <div class="font-medium">— Colonel Bahlla</div>
+               </div>
+               <div class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear">
+                  <div class="flex items-center gap-1 mb-3" aria-label="5 stars">
+                     <i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i><i data-lucide="star" class="w-5 h-5 text-amber-500 fill-amber-500"></i>
+                  </div>
+                  <p class="mb-4 italic">“Not just teaching to pass a test — I learned to be a defensive driver for life.”</p>
+                  <div class="font-medium">— Celine</div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Contact -->
+      <section id="contact" class="py-20 bg-white">
+         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <!-- LEFT: Google Map -->
+            <div class="appear">
+               <div class="rounded-2xl overflow-hidden border border-black/5 shadow-soft min-h-[360px] h-[380px] lg:h-[460px]">
+                  <!-- Replace the src with your own Google Maps Embed later -->
+                  <iframe
+                     title="Drive In Canada — Map"
+                     src="https://www.google.com/maps?q=Mississauga%20Ontario&output=embed"
+                     class="w-full h-full"
+                     style="border:0;"
+                     loading="lazy"
+                     referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+               </div>
+            </div>
+            <!-- RIGHT: Contact info (moved here) -->
+            <div class="space-y-6 appear">
+               <h3 class="text-2xl font-semibold">Start Your Journey Today</h3>
+               <p class="text-black/70">Ready to become a confident, safe driver? Book your first lesson or ask us anything about the program.</p>
+               <div class="space-y-4">
+                  <a href="tel:6478926797" class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5 hover:border-brand-green-300 hover:shadow-soft transition">
+                     <div class="bg-brand-red-600 text-white rounded-full p-3"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                     <div>
+                        <div class="font-medium">Call Us</div>
+                        <div class="text-black/70">(647) 892-6797</div>
+                     </div>
+                  </a>
+                  <a href="mailto:youdriveincanada@gmail.com" class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5 hover:border-brand-green-300 hover:shadow-soft transition">
+                     <div class="bg-brand-green-700 text-white rounded-full p-3"><i data-lucide="mail" class="w-5 h-5"></i></div>
+                     <div>
+                        <div class="font-medium">Email Us</div>
+                        <div class="text-black/70">youdriveincanada@gmail.com</div>
+                     </div>
+                  </a>
+                  <div class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5">
+                     <div class="bg-black text-white rounded-full p-3"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                     <div>
+                        <div class="font-medium">Visit Us</div>
+                        <div class="text-black/70">Mississauga, Ontario</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Overlapping Pill CTA between Contact and FAQ -->
+         <div class="relative z-20 -mb-10 mt-14 flex justify-center appear">
+            <div class="glass rounded-full shadow-soft border border-black/5 px-6 py-4 flex items-center gap-3">
+               <i data-lucide="users" class="w-5 h-5 text-brand-green-700"></i>
+               <span class="font-medium">Join The 40,000+ Satisfied student community!</span>
+            </div>
+         </div>
+         </div>
+      </section>
+      <!-- FAQ (stronger contrast so it shows) -->
+      <section id="faq" class="pt-16 pb-20 bg-slate-50 relative z-10">
+         <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12 appear">
+               <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Frequently Asked Questions</h2>
+            </div>
+            <div class="space-y-4" x-data="{ open:0 }">
+               <template x-for="(item, idx) in [
+                  {q:'What does the full course program consist of?', a:'20 hours of in-class training, 10 hours of in-car driving lesson and 10 hours of home work.'},
+                  {q:'Can I join the course at any time?', a:'Yes, you can join the course any weekday or weekend. Just call our office and we will let you know what day classes are available.'},
+                  {q:'Do I have to finish my classes before I can start my in-car training?', a:'No. We give you the option of doing your classes and in-car lessons side-by-side or you may begin your in-car lessons after completing the classes.'},
+                  {q:'Is there a payment plan?', a:'Yes, you can pay half of the course fee on the 1st in-class lesson and the other half on your 1st in-car lesson.'},
+                  {q:'How fast can I complete the in-class lessons?', a:'You can combine weekdays and weekends and get it done in 10 days.'},
+                  {q:'Can I start the course without my G1?', a:'You can start the course without your G1, but you must have it by the time you are ready to start your driving lessons.'},
+                  {q:'How long can I wait before I have to start my driving lessons?', a:'You must start your driving lessons within eight (8) weeks of finishing your in-class lessons.'},
+                  {q:'How long do I have to finish the course?', a:'You must complete the course within one (1) year of your starting date.'},
+                  {q:'Are course lessons enough?', a:'If you feel you need extra driving lessons we have additional packages.'},
+                  {q:'How early can I go for my ministry road test?', a:'With our approved course, the wait is minimum 8 months from licence issue; otherwise 1 year.'},
+                  {q:'Who brings me to my road test?', a:'Anyone who has G Licence and 4 years of experience in Ontario.'},
+                  {q:'Can I use the instructor\'s car?', a:'Yes, for an additional cost depending on the test centre.'},
+                  {q:'What if I fail my road test?', a:'You’ll pay $40 for G1 exit or $75 for G2 exit when you rebook.'},
+                  {q:'How do I book a road test?', a:'Call 1-888-570-6110 or visit drivetest.ca. We can also book it for you.'},
+                  {q:'When do I get my certificate?', a:'After you complete in-class and in-car, we certify you and you pick it up at Service Ontario.'},
+                  {q:'Where are certificates issued?', a:'By the MTO in Kingston.'},
+                  {q:'What if I lose my certificate?', a:'Service Ontario can reprint for $12.'}
+                  ]" :key="idx">
+                  <div class="bg-white rounded-2xl border border-emerald-100 shadow-soft overflow-hidden">
+                     <button @click="open = open===idx ? null : idx" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-emerald-50/40">
+                     <span class="font-medium" x-text="item.q"></span>
+                     <i data-lucide="chevron-down" class="w-5 h-5 transition-transform" :class="{ 'rotate-180': open===idx }"></i>
+                     </button>
+                     <div x-show="open===idx" x-collapse>
+                        <div class="px-6 pb-5 text-black/80" x-text="item.a"></div>
+                     </div>
+                  </div>
+               </template>
+            </div>
+         </div>
+      </section>
+      <!-- Footer -->
+      <footer class="relative bg-gradient-to-br from-brand-green-800 via-brand-green-700 to-brand-green-900 text-white pt-14 pb-10 rounded-t-3xl">
+         <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+               <div>
+                  <div class="flex items-center gap-2 mb-4">
+                     <i data-lucide="car" class="w-7 h-7"></i>
+                     <span class="text-lg font-semibold tracking-tight">Drive In Canada</span>
+                  </div>
+                  <p class="text-white/80">Your journey to safe driving starts here.</p>
+               </div>
+               <div>
+                  <h4 class="font-medium mb-4">Quick Links</h4>
+                  <ul class="space-y-2 text-white/80">
+                     <li><a href="#services" class="hover:text-white">Services</a></li>
+                     <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+                     <li><a href="#about" class="hover:text-white">About</a></li>
+                     <li><a href="#testimonials" class="hover:text-white">Reviews</a></li>
+                  </ul>
+               </div>
+               <div>
+                  <h4 class="font-medium mb-4">Contact</h4>
+                  <ul class="space-y-2 text-white/80">
+                     <li>(647) 892-6797</li>
+                     <li>youdriveincanada@gmail.com</li>
+                     <li>Mississauga, Ontario</li>
+                  </ul>
+               </div>
+               <div>
+                  <h4 class="font-medium mb-4">Follow</h4>
+                  <div class="flex gap-3 items-center">
+                     <a href="https://www.facebook.com/driveincanada" class="bg-white/10 p-2 rounded-full hover:bg-white/20" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                     <a href="https://x.com/driveincanada" class="bg-white/10 px-3 py-2 rounded-full hover:bg-white/20 text-xs font-medium" aria-label="Google+">Google+</a>
+                     <a href="mailto:youdriveincanada@gmail.com" class="bg-white/10 p-2 rounded-full hover:bg-white/20" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-white/20 text-center text-white/80">
+               <p>Made by Abdullah • &copy; <span id="year"></span> Drive In Canada. All rights reserved.</p>
+            </div>
+         </div>
+      </footer>
+      <script>
+         // Icons
+         lucide.createIcons();
+         
+         // Reveal on scroll
+         const revealObserver = new IntersectionObserver((entries)=> {
+           entries.forEach((entry)=>{ if(entry.isIntersecting){ entry.target.classList.add('visible'); }});
+         }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+         document.querySelectorAll('.appear').forEach((el)=> revealObserver.observe(el));
+         
+         // Smooth anchor scroll
+         document.querySelectorAll('a[href^="#"]').forEach((anchor)=>{
+           anchor.addEventListener('click', function(e){
+             const href = this.getAttribute('href');
+             if(!href || href==='#') return;
+             const target = document.querySelector(href);
+             if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+           });
+         });
+         
+         // Active nav highlight on scroll (desktop + mobile)
+         const navLinks = document.querySelectorAll('[data-nav]');
+         const sectionIds = Array.from(document.querySelectorAll('section[id]')).map(s=>s.id);
+         const sectionObserver = new IntersectionObserver((entries)=>{
+           entries.forEach(entry=>{
+             if(entry.isIntersecting){
+               const id = entry.target.id;
+               navLinks.forEach(a => a.classList.toggle('active', a.dataset.nav === id));
+             }
+           });
+         }, { threshold: 0.6 });
+         sectionIds.forEach(id => {
+           const el = document.getElementById(id);
+           if(el) sectionObserver.observe(el);
+         });
+         
+         // YEAR
+         document.getElementById('year').textContent = new Date().getFullYear();
+         
+         // ---------- ROLLING ODOMETER ----------
+         function buildDigitElement() {
+           const digit = document.createElement('div');
+           digit.className = 'digit';
+           const inner = document.createElement('div');
+           inner.className = 'digit-inner';
+         
+           // 0..9 repeated to allow multiple "spins"
+           const cycles = 12;
+           for (let c = 0; c < cycles; c++) {
+             for (let n = 0; n < 10; n++) {
+               const s = document.createElement('span');
+               s.textContent = n;
+               inner.appendChild(s);
+             }
+           }
+           digit.appendChild(inner);
+           return { digit, inner, cycles };
+         }
+         
+         function initOdometer(el) {
+           if (el.dataset.done) return;
+           el.dataset.done = '1';
+         
+           const targetNum = parseInt(el.dataset.target, 10);
+           const str = targetNum.toString();
+           el.innerHTML = '';
+         
+           const digits = [];
+           for (let i = 0; i < str.length; i++) {
+             const { digit, inner, cycles } = buildDigitElement();
+             el.appendChild(digit);
+             digits.push({ inner, cycles });
+             // Optional thousand separators
+             const posFromRight = str.length - i;
+             if (posFromRight > 1 && posFromRight % 3 === 1) {
+               const sep = document.createElement('span'); sep.className='sep'; sep.textContent=',';
+               el.appendChild(sep);
+             }
+           }
+         
+           // After layout, animate to target with varied delays/durations
+           requestAnimationFrame(()=> {
+             const anyInner = digits[0].inner;
+             const digitHeight = anyInner.querySelector('span').getBoundingClientRect().height;
+         
+             [...str].forEach((ch, idx) => {
+               const d = parseInt(ch, 10);
+               const { inner, cycles } = digits[idx];
+               const spins = 2 + Math.floor(Math.random()*3);            // random extra cycles 2..4
+               const finalIndex = (spins * 10) + d;                       // where to stop
+               inner.style.transitionDuration = (900 + idx*180) + 'ms';   // staggered
+               inner.style.transitionTimingFunction = 'cubic-bezier(.2,.9,.2,1)';
+               // random pre-scramble: jump to a random high index quickly
+               inner.style.transform = `translateY(${-digitHeight * (Math.floor(Math.random()*(cycles*10-10)))}px)`;
+               // settle to final on next frame
+               setTimeout(()=> {
+                 inner.style.transform = `translateY(${-digitHeight * finalIndex}px)`;
+               }, 80 + idx*70);
+             });
+           });
+         }
+         
+         // Start odometer when stats enter view
+         const statsObserver = new IntersectionObserver((entries)=>{
+           entries.forEach((entry)=> {
+             if (entry.isIntersecting) {
+               document.querySelectorAll('.odometer').forEach(initOdometer);
+               statsObserver.disconnect();
+             }
+           });
+         }, { threshold: 0.35 });
+         const statsSection = document.getElementById('stats');
+         if (statsSection) statsObserver.observe(statsSection);
+         
+         const mutationObs = new MutationObserver((mutations) => {
+         for (const m of mutations) {
+           m.addedNodes.forEach((n) => {
+             if (n.nodeType !== 1) return;
+             if (n.classList && n.classList.contains('appear')) revealObserver.observe(n);
+             if (n.querySelectorAll) {
+               n.querySelectorAll('.appear').forEach((el) => revealObserver.observe(el));
+             }
+           });
+         }
+         });
+         mutationObs.observe(document.body, { childList: true, subtree: true });
+      </script>
+   </body>
+</html>
