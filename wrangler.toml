@@ -1,5 +1,5 @@
 # wrangler.toml — minimal static-site config
-name = "drive-in-canada"
+name = 'driveincanada'
 account_id = "a62f6e85d86cbf0e919fd15b5869ab46"
 compatibility_date = "2025-08-10"
 
