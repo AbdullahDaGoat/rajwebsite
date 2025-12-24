@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drive In Canada — Premium Driving School</title>
+    <title>Drive In Canada — MTO-Approved Driving School in Mississauga</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://www.youtube.com" />
+    <link rel="preconnect" href="https://i.ytimg.com" />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="dns-prefetch" href="https://www.google.com" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,15 +18,17 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/qFVWDkxr/6921c13a-843a-4e8f-9348-6e179d4927d1.png" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/qFVWDkxr/6921c13a-843a-4e8f-9348-6e179d4927d1.png" />
 
-    <!-- SEO + Meta (kept) -->
+    <!-- SEO + Meta -->
     <link rel="canonical" href="https://driveincanada.ca/" />
     <link rel="alternate" hreflang="en-CA" href="https://driveincanada.ca/" />
     <link rel="alternate" hreflang="x-default" href="https://driveincanada.ca/" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1" />
     <meta name="googlebot" content="index, follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="description" content="MTO-approved driving school in Mississauga, Ontario. 20h in-class + 10h in-car lessons, highway training, road-test services, and insurance certificate. We sell peace of mind. Call (647) 892-6797." />
+    <meta name="description" content="MTO-approved driving school in Mississauga, Ontario. 20h in-class + 10h in-car lessons, highway training, road-test services, and insurance certificate. 97% pass rate. Call (647) 892-6797." />
+    <meta name="keywords" content="driving school Mississauga, MTO approved driving course, G2 test preparation, G test Mississauga, driving lessons Ontario, beginner driver education, highway driving training, insurance discount certificate" />
     <meta name="author" content="Drive In Canada" />
     <meta name="theme-color" content="#065f46" />
     <meta name="color-scheme" content="light" />
@@ -27,24 +36,26 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://driveincanada.ca/" />
-    <meta property="og:title" content="Drive In Canada — Premium Driving School" />
+    <meta property="og:title" content="Drive In Canada — MTO-Approved Driving School in Mississauga" />
     <meta property="og:site_name" content="Drive In Canada" />
-    <meta property="og:description" content="MTO-approved training that builds confident, defensive drivers in Mississauga, Ontario. We sell peace of mind." />
+    <meta property="og:description" content="MTO-approved training that builds confident, defensive drivers in Mississauga, Ontario. 97% pass rate. We sell peace of mind." />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:image" content="https://i.ibb.co/ymJqfD3m/driver-1024x475.png" />
-    <meta property="og:image:alt" content="Student driver training with instructor" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="475" />
+    <meta property="og:image:alt" content="Student driver training with instructor at Drive In Canada" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Drive In Canada — Premium Driving School" />
-    <meta name="twitter:description" content="Mississauga's MTO-approved driving school: classroom + in-car lessons, highway training, road-test services, insurance certificate. We sell peace of mind." />
+    <meta name="twitter:title" content="Drive In Canada — MTO-Approved Driving School" />
+    <meta name="twitter:description" content="Mississauga's MTO-approved driving school: 20h classroom + 10h in-car lessons, highway training, road-test services. 97% pass rate." />
     <meta name="twitter:image" content="https://i.ibb.co/ymJqfD3m/driver-1024x475.png" />
 
     <!-- Geo -->
     <meta name="geo.region" content="CA-ON" />
     <meta name="geo.placename" content="Mississauga" />
 
-    <!-- Schema.org JSON-LD (kept) -->
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -66,11 +77,18 @@
             "@id": "https://driveincanada.ca/#organization",
             "name": "Drive In Canada",
             "url": "https://driveincanada.ca/",
+            "logo": "https://i.ibb.co/qFVWDkxr/6921c13a-843a-4e8f-9348-6e179d4927d1.png",
+            "image": "https://i.ibb.co/ymJqfD3m/driver-1024x475.png",
             "email": "youdriveincanada@gmail.com",
             "telephone": "+1-647-892-6797",
             "slogan": "We sell peace of mind",
+            "description": "MTO-approved driving school offering comprehensive driver education including classroom sessions, in-car training, highway lessons, and road test preparation.",
             "founder": { "@type": "Person", "name": "Raja" },
-            "areaServed": { "@type": "AdministrativeArea", "name": "Mississauga, Ontario" },
+            "areaServed": {
+              "@type": "City",
+              "name": "Mississauga",
+              "containedInPlace": { "@type": "AdministrativeArea", "name": "Ontario" }
+            },
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "Mississauga",
@@ -78,20 +96,140 @@
               "addressCountry": "CA"
             },
             "priceRange": "$50–$599",
-            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "bestRating": "5", "ratingCount": "6" }
+            "currenciesAccepted": "CAD",
+            "paymentAccepted": "Cash, Credit Card",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "bestRating": "5",
+              "ratingCount": "6"
+            },
             "sameAs": [
-            "https://www.facebook.com/driveincanada",
-            "https://x.com/driveincanada",
-            "https://www.tiktok.com/@rajamudassarsatti007?_t=ZM-8ymLLssqI0m&_r=1"
+              "https://www.facebook.com/driveincanada",
+              "https://x.com/driveincanada",
+              "https://www.tiktok.com/@rajamudassarsatti007"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Driving Courses",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Course",
+                    "name": "Special Package",
+                    "description": "Basic driving training with flexible schedule, ideal for beginners"
+                  },
+                  "price": "300",
+                  "priceCurrency": "CAD"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Course",
+                    "name": "Regular Package",
+                    "description": "Complete course with 5 in-car lessons and classroom sessions"
+                  },
+                  "price": "399",
+                  "priceCurrency": "CAD"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Course",
+                    "name": "Super Package",
+                    "description": "Everything included: full training, insurance certificate, priority booking with up to 37% savings"
+                  },
+                  "price": "599",
+                  "priceCurrency": "CAD"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Course",
+                    "name": "Highway Training",
+                    "description": "Advanced highway coaching and G test preparation"
+                  },
+                  "price": "50",
+                  "priceCurrency": "CAD"
+                }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What does the full course program consist of?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "20 hours of in-class training, 10 hours of in-car driving lesson and 10 hours of home work."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I join the course at any time?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, you can join the course any weekday or weekend. Just call our office and we will let you know what day classes are available."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I have to finish my classes before I can start my in-car training?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. You may do classes and in-car lessons side-by-side or begin lessons after completing the classes."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there a payment plan?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, pay half on the 1st in-class lesson and the other half on your 1st in-car lesson."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How fast can I complete the in-class lessons?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Combine weekdays and weekends and get it done in 10 days."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I start the course without my G1?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can start without your G1, but you must have it by the time you are ready to start your driving lessons."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long can I wait before I have to start my driving lessons?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Start within eight (8) weeks of finishing your in-class lessons."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long do I have to finish the course?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Complete the course within one (1) year of your starting date."
+                }
+              }
             ]
-
           }
-          
         ]
       }
     </script>
 
-    <!-- Tailwind config (kept) -->
+    <!-- Tailwind config -->
     <script>
       tailwind.config = {
         theme: {
@@ -110,36 +248,33 @@
             },
             animation: {
               'bounce-in': 'bounceIn .7s cubic-bezier(.68,-.55,.265,1.55)',
-              float: 'float 3s ease-in-out infinite',
+              'float': 'float 3s ease-in-out infinite',
               'pulse-slow': 'pulse 3s cubic-bezier(.4,0,.6,1) infinite',
               'spin-slow': 'spin 8s linear infinite',
               'slide-up': 'slideUp 0.5s ease-out',
               'slide-down': 'slideDown 0.5s ease-out',
-              'intro-shrink': 'introShrink 0.8s cubic-bezier(.4,0,.2,1) forwards'
+              'fade-in': 'fadeIn 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.3s ease-out forwards'
             },
             keyframes: {
               bounceIn: { '0%': { transform: 'scale(.96)', opacity: '0' }, '50%': { transform: 'scale(1.02)' }, '100%': { transform: 'scale(1)', opacity: '1' } },
               float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
               slideUp: { '0%': { transform: 'translateY(100%)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
               slideDown: { '0%': { transform: 'translateY(0)', opacity: '1' }, '100%': { transform: 'translateY(100%)', opacity: '0' } },
-              introShrink: { '0%': { height: '100vh' }, '100%': { height: '92vh' } }
+              fadeIn: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+              scaleIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } }
             },
             boxShadow: {
-              soft: '0 6px 30px rgba(2,6,23,.06)',
-              glow: '0 10px 30px rgba(16,185,129,.25)'
+              'soft': '0 6px 30px rgba(2,6,23,.06)',
+              'glow': '0 10px 30px rgba(16,185,129,.25)',
+              'glow-red': '0 10px 30px rgba(239,68,68,.2)'
             }
           }
         }
       }
     </script>
 
-    <!--
-      =============================
-      EDITABLE CONTENT (JSON)
-      =============================
-      Your non-dev friend can edit ONLY this JSON block to change text, prices, FAQs, etc.
-      No code knowledge required. Keep quotes and commas.
-    -->
+    <!-- EDITABLE CONTENT (JSON) -->
     <script id="site-content" type="application/json">
 {
   "brand": { "name": "Drive In Canada", "slogan": "We sell peace of mind" },
@@ -154,6 +289,7 @@
   "hero": {
     "title": "Drive In Canada",
     "subtitle": "MTO-approved training that builds confident, defensive drivers.",
+    "highlight": "97% Pass Rate",
     "youtubeId": "kvpSRqb4r-s",
     "primaryCta": { "label": "View Packages", "href": "#pricing" },
     "secondaryCta": { "label": "Learn More", "href": "#about" }
@@ -200,7 +336,7 @@
     }
   ],
   "about": {
-    "headline": "About: Drive In Canada",
+    "headline": "About Drive In Canada",
     "tagline": "We sell peace of mind",
     "paragraphs": [
       "My name is Raja. I was working as a General Manager in Euro Hotels London United Kingdom Ltd from 2000 to 2007. Then I started my own driving school in central London. I moved to Canada and started serving the Mississauga Community to provide the best quality driving training.",
@@ -240,38 +376,31 @@
   "socials": {
     "facebook": "https://www.facebook.com/driveincanada",
     "x": "https://x.com/driveincanada",
-    "tiktok": "https://www.tiktok.com/@rajamudassarsatti007?_t=ZM-8ymLLssqI0m&_r=1",
+    "tiktok": "https://www.tiktok.com/@rajamudassarsatti007",
     "email": "mailto:youdriveincanada@gmail.com"
   }
 }
     </script>
 
-    <!-- Helpers for Alpine: one place to load JSON and app state -->
+    <!-- Alpine App -->
     <script>
       function driveApp() {
         const content = JSON.parse(document.getElementById('site-content').textContent);
         return {
-          // ===== Content =====
           content,
-          // ===== UI state =====
           mobileMenu: false,
           scrollY: 0,
           lastScrollY: 0,
           navHidden: false,
           mobileNavHidden: false,
           introComplete: false,
-          // local section states
           faqOpen: null,
           faqShowAll: false,
 
-          // ===== Methods =====
           init() {
-            // Intro animation
             setTimeout(() => { this.introComplete = true }, 500);
-            // Scroll handlers
             this.handleScroll();
             window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
-            // Ensure Lucide icons render after Alpine paints
             this.$nextTick(() => { if (window.lucide) lucide.createIcons(); });
           },
           handleScroll() {
@@ -282,16 +411,15 @@
             }
             this.lastScrollY = this.scrollY;
           },
-          // Dynamic styles for pricing glow
           pkgGlow(accent) {
             if (accent === 'green') return 'radial-gradient(700px 240px at 50% -20%, rgba(16,185,129,.18), transparent 60%)';
             if (accent === 'red') return 'radial-gradient(600px 200px at 50% -20%, rgba(239,68,68,.12), transparent 60%)';
             return 'radial-gradient(600px 200px at 50% -20%, rgba(0,0,0,.12), transparent 60%)';
           },
           pkgCtaClass(accent) {
-            if (accent === 'green') return 'bg-brand-green-700 hover:bg-brand-green-800 text-white';
-            if (accent === 'red') return 'bg-brand-red-600 hover:bg-brand-red-700 text-white';
-            return 'bg-black hover:bg-black/80 text-white';
+            if (accent === 'green') return 'bg-brand-green-700 hover:bg-brand-green-800 text-white focus-visible:ring-brand-green-300';
+            if (accent === 'red') return 'bg-brand-red-600 hover:bg-brand-red-700 text-white focus-visible:ring-brand-red-300';
+            return 'bg-black hover:bg-black/80 text-white focus-visible:ring-gray-400';
           }
         }
       }
@@ -299,62 +427,157 @@
 
     <style>
       html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
       :root { --nav-height: 64px; }
-      .hide-scrollbar::-webkit-scrollbar{display:none}
-      .hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+      .hide-scrollbar::-webkit-scrollbar { display: none }
+      .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none }
+      
+      /* Skip link */
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #065f46;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        z-index: 9999;
+        transition: top 0.2s;
+      }
+      .skip-link:focus {
+        top: 0;
+        outline: 2px solid #10b981;
+        outline-offset: 2px;
+      }
+      
+      /* Focus visible */
+      :focus-visible {
+        outline: 2px solid #10b981;
+        outline-offset: 2px;
+      }
+      button:focus-visible, a:focus-visible {
+        outline: 2px solid #10b981;
+        outline-offset: 2px;
+      }
+      
       /* Glassmorphism */
-      .glass{ background:rgba(255,255,255,.88); backdrop-filter:blur(16px) saturate(180%); -webkit-backdrop-filter:blur(16px) saturate(180%) }
-      .glass-card{ background:rgba(255,255,255,.55); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px) }
-      .glass-mobile{ background:rgba(255,255,255,.75); backdrop-filter:blur(20px) saturate(200%); -webkit-backdrop-filter:blur(20px) saturate(200%); border: 1px solid rgba(255,255,255,0.3) }
+      .glass { background: rgba(255,255,255,.88); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%) }
+      .glass-card { background: rgba(255,255,255,.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px) }
+      .glass-mobile { background: rgba(255,255,255,.75); backdrop-filter: blur(20px) saturate(200%); -webkit-backdrop-filter: blur(20px) saturate(200%); border: 1px solid rgba(255,255,255,0.3) }
+      
       /* Reveal on scroll */
-      .appear{ opacity:0; transform:translateY(24px); transition:all .6s cubic-bezier(.4,0,.2,1) }
-      .appear.visible{ opacity:1; transform:translateY(0) }
+      .appear { opacity: 0; transform: translateY(24px); transition: all .6s cubic-bezier(.4,0,.2,1) }
+      .appear.visible { opacity: 1; transform: translateY(0) }
+      
       /* Video overlay */
-      .video-overlay::after{ content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.65)); pointer-events:none }
+      .video-overlay::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.65)); pointer-events: none }
+      
       /* Card hover */
-      .card-hover{ transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background-color .25s ease }
-      .card-hover:hover{ transform:translateY(-6px); box-shadow:0 16px 40px rgba(2,6,23,.08); border-color:rgba(5,150,105,.4) }
+      .card-hover { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background-color .25s ease }
+      .card-hover:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(2,6,23,.08); border-color: rgba(5,150,105,.4) }
+      
       /* Desktop nav active underline */
-      .nav-link{ position:relative; padding-bottom:6px }
-      .nav-link.active::after{ content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:linear-gradient(90deg,#10b981,#ef4444); border-radius:2px }
+      .nav-link { position: relative; padding-bottom: 6px }
+      .nav-link.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg,#10b981,#ef4444); border-radius: 2px }
+      
       /* Section anchor offset */
-      section[id]{ scroll-margin-top:calc(var(--nav-height) + 20px) }
+      section[id] { scroll-margin-top: calc(var(--nav-height) + 20px) }
+      
       /* Hero buttons */
       .hero-btn { transition: all 0.2s ease }
       .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15) }
-      /* Mobile nav transitions */
-      .mobile-nav-enter { animation: slideUp 0.3s ease-out }
-      .mobile-nav-exit { animation: slideDown 0.3s ease-out }
+      
+      /* Hero gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, #ffffff 0%, #d1fae5 50%, #ffffff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      /* YouTube facade */
+      .youtube-facade {
+        position: relative;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+      }
+      .youtube-facade::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.3);
+        transition: background 0.2s;
+      }
+      .youtube-facade:hover::before {
+        background: rgba(0,0,0,0.4);
+      }
+      .youtube-play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 68px;
+        height: 48px;
+        background: #dc2626;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s, background 0.2s;
+      }
+      .youtube-facade:hover .youtube-play-btn {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: #b91c1c;
+      }
+      
       /* Intro overlay */
-      .intro-overlay{ position:fixed; inset:0; z-index:9999; background:#000; display:flex; align-items:center; justify-content:center; transition:opacity .4s ease-out; }
-      .intro-text { font-size: clamp(2rem, 8vw, 5rem); font-weight: bold; color: white; animation: fadeInScale 0.8s ease-out; }
-      @keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.9) } 100% { opacity: 1; transform: scale(1) } }
-      [x-cloak]{display:none !important;}
+      .intro-overlay { position: fixed; inset: 0; z-index: 9999; background: #000; display: flex; align-items: center; justify-content: center; transition: opacity .4s ease-out }
+      
+      [x-cloak] { display: none !important }
+      
+      /* Print styles */
+      @media print {
+        nav, .youtube-facade, .glass-mobile, footer { display: none !important }
+        section { break-inside: avoid }
+      }
     </style>
   </head>
 
   <body class="bg-white text-black hide-scrollbar" x-data="driveApp()">
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Intro Overlay -->
-    <div class="intro-overlay" x-cloak x-show="!introComplete" x-transition:leave="transition-opacity duration-400 ease-out" x-transition:leave-end="opacity-0">
-      <img src="https://i.ibb.co/wHTbHRy/e3c63547-bfd7-4ef9-b088-ad6ce25dbb7b.png" alt="Drive In Canada" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="intro-overlay" x-cloak x-show="!introComplete" x-transition:leave="transition-opacity duration-400 ease-out" x-transition:leave-end="opacity-0" aria-hidden="true">
+      <img src="https://i.ibb.co/wHTbHRy/e3c63547-bfd7-4ef9-b088-ad6ce25dbb7b.png" alt="" class="absolute inset-0 w-full h-full object-cover" />
     </div>
 
-    <!-- Page Shell for fade-in -->
+    <!-- Page Shell -->
     <div x-show="introComplete" x-transition.opacity.duration.450ms x-cloak>
       <!-- Desktop Nav -->
-      <nav class="hidden md:block fixed top-0 left-0 right-0 z-50 transition-transform duration-300 glass border-b border-black/5 backdrop-saturate-150" style="height: var(--nav-height)" :class="{ '-translate-y-full': navHidden }" aria-label="Primary">
+      <nav class="hidden md:block fixed top-0 left-0 right-0 z-50 transition-transform duration-300 glass border-b border-black/5 backdrop-saturate-150" style="height: var(--nav-height)" :class="{ '-translate-y-full': navHidden }" aria-label="Primary navigation">
         <div class="max-w-7xl mx-auto px-6 h-full">
           <div class="flex items-center justify-between h-full">
             <a href="#home" class="flex items-center gap-2 group">
-              <img src="https://i.ibb.co/qFVWDkxr/6921c13a-843a-4e8f-9348-6e179d4927d1.png" alt="Drive In Canada Logo" class="w-8 h-8" />
-              <span class="text-lg font-semibold tracking-tight group-hover:text-brand-green-800" x-text="content.brand.name"></span>
+              <img src="https://i.ibb.co/qFVWDkxr/6921c13a-843a-4e8f-9348-6e179d4927d1.png" alt="" class="w-8 h-8" width="32" height="32" />
+              <span class="text-lg font-semibold tracking-tight group-hover:text-brand-green-800 transition-colors" x-text="content.brand.name"></span>
             </a>
             <div class="flex items-center gap-8">
               <template x-for="link in content.nav" :key="link.id">
                 <a class="nav-link hover:text-brand-green-800 transition-colors" :href="`#${link.id}`" :data-nav="link.id" x-text="link.label"></a>
               </template>
-              <a :href="content.contact.phoneHref" class="inline-flex items-center gap-2 bg-brand-red-600 text-white px-5 py-2 rounded-full hover:bg-brand-red-700 focus:outline-none focus:ring-2 focus:ring-brand-red-300">
-                <i data-lucide="phone" class="w-4 h-4"></i> Call Now
+              <a :href="content.contact.phoneHref" class="inline-flex items-center gap-2 bg-brand-red-600 text-white px-5 py-2 rounded-full hover:bg-brand-red-700 transition-colors focus-visible:ring-2 focus-visible:ring-brand-red-300">
+                <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i>
+                <span>Call Now</span>
               </a>
             </div>
           </div>
@@ -362,232 +585,238 @@
       </nav>
 
       <!-- Mobile Bottom Nav -->
-      <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300" :class="{ 'translate-y-20': mobileNavHidden, 'translate-y-0': !mobileNavHidden }" aria-label="Mobile">
+      <nav class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300" :class="{ 'translate-y-20': mobileNavHidden, 'translate-y-0': !mobileNavHidden }" aria-label="Mobile navigation">
         <div class="glass-mobile rounded-full shadow-soft px-5 py-2">
           <div class="flex items-center gap-4">
-            <a data-nav="home" href="#home" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Home"><i data-lucide="home" class="w-5 h-5"></i></a>
-            <a data-nav="services" href="#services" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Services"><i data-lucide="book-open" class="w-5 h-5"></i></a>
-            <a data-nav="pricing" href="#pricing" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Pricing"><i data-lucide="tag" class="w-5 h-5"></i></a>
-            <a data-nav="contact" href="#contact" class="p-2 rounded-full hover:bg-black/5 transition" aria-label="Contact"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
-            <a :href="content.contact.phoneHref" class="p-2 rounded-full bg-brand-red-600 text-white hover:bg-brand-red-700 transition" aria-label="Call"><i data-lucide="phone" class="w-5 h-5"></i></a>
+            <a data-nav="home" href="#home" class="p-2 rounded-full hover:bg-black/5 transition-colors" aria-label="Home"><i data-lucide="home" class="w-5 h-5" aria-hidden="true"></i></a>
+            <a data-nav="services" href="#services" class="p-2 rounded-full hover:bg-black/5 transition-colors" aria-label="Services"><i data-lucide="book-open" class="w-5 h-5" aria-hidden="true"></i></a>
+            <a data-nav="pricing" href="#pricing" class="p-2 rounded-full hover:bg-black/5 transition-colors" aria-label="Pricing"><i data-lucide="tag" class="w-5 h-5" aria-hidden="true"></i></a>
+            <a data-nav="contact" href="#contact" class="p-2 rounded-full hover:bg-black/5 transition-colors" aria-label="Contact"><i data-lucide="message-circle" class="w-5 h-5" aria-hidden="true"></i></a>
+            <a :href="content.contact.phoneHref" class="p-2 rounded-full bg-brand-red-600 text-white hover:bg-brand-red-700 transition-colors" aria-label="Call us"><i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i></a>
           </div>
         </div>
       </nav>
 
-      <!-- Hero -->
-      <section id="home" class="relative video-overlay overflow-hidden transition-all duration-800" :class="introComplete ? 'h-[92vh] md:h-[92vh]' : 'h-screen'">
-        <!-- Full-bleed YouTube background -->
+      <main id="main-content">
+        <!-- Hero -->
+        <section id="home" class="relative video-overlay overflow-hidden h-[92vh]">
+          <!-- YouTube Facade (loads video only on click) -->
+          <!-- Full-bleed YouTube background (autoplay) -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-w-[177.78vh] min-h-[100vh]">
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-w-[177.78vh] min-h-[100vh]">
             <iframe class="w-full h-full" :src="`https://www.youtube.com/embed/${content.hero.youtubeId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${content.hero.youtubeId}&fs=0&iv_load_policy=3&disablekb=1`" title="Background driving video" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-          </div>
         </div>
-        <div class="relative z-10 h-full flex items-center justify-center text-white">
-          <div class="text-center px-4 sm:px-6 space-y-6 max-w-3xl" x-data="{show:false}" x-init="setTimeout(()=> show=true, 2000)">
-            <h1 class="text-4xl md:text-6xl font-semibold tracking-tight animate-bounce-in" x-show="show" x-transition x-text="content.hero.title"></h1>
-            <p class="text-lg md:text-2xl text-white/90 opacity-0" x-show="show" x-transition.delay.150ms :class="{ 'opacity-100': show }" x-text="content.hero.subtitle"></p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6 opacity-0" x-show="show" x-transition.delay.250ms :class="{ 'opacity-100': show }">
-              <a :href="content.hero.primaryCta.href" class="hero-btn bg-white text-black px-7 py-3 rounded-full font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-green-300" x-text="content.hero.primaryCta.label"></a>
-              <a :href="content.hero.secondaryCta.href" class="hero-btn border border-white/80 text-white px-7 py-3 rounded-full font-medium hover:bg-white hover:text-black transition" x-text="content.hero.secondaryCta.label"></a>
+        </div>
+          
+          <div class="relative z-10 h-full flex items-center justify-center text-white">
+            <div class="text-center px-4 sm:px-6 space-y-6 max-w-3xl" x-data="{show:false}" x-init="setTimeout(()=> show=true, 800)">
+              <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium opacity-0" x-show="show" x-transition.delay.50ms :class="{ 'opacity-100': show }">
+                <i data-lucide="award" class="w-4 h-4 text-brand-green-400" aria-hidden="true"></i>
+                <span x-text="content.hero.highlight"></span>
+              </div>
+              <h1 class="text-4xl md:text-6xl font-semibold tracking-tight gradient-text animate-bounce-in" x-show="show" x-transition x-text="content.hero.title"></h1>
+              <p class="text-lg md:text-2xl text-white/90 opacity-0" x-show="show" x-transition.delay.150ms :class="{ 'opacity-100': show }" x-text="content.hero.subtitle"></p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6 opacity-0" x-show="show" x-transition.delay.250ms :class="{ 'opacity-100': show }">
+                <a :href="content.hero.primaryCta.href" class="hero-btn bg-white text-black px-7 py-3 rounded-full font-medium hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-white" x-text="content.hero.primaryCta.label"></a>
+                <a :href="content.hero.secondaryCta.href" class="hero-btn border border-white/80 text-white px-7 py-3 rounded-full font-medium hover:bg-white hover:text-black transition-colors" x-text="content.hero.secondaryCta.label"></a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-float opacity-0" aria-hidden="true" x-show="introComplete" x-transition:enter="transition-opacity duration-500 delay-300" x-transition:enter-end="opacity-100">
-          <i data-lucide="chevron-down" class="w-7 h-7"></i>
-        </div>
-      </section>
-
-      <!-- Services -->
-      <section id="services" class="py-16 sm:py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-10 sm:mb-12 appear">
-            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Our Services</h2>
-            <p class="mt-3 text-black/70 px-4">Structured training, modern techniques, and a patient approach.</p>
+          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-float opacity-0" aria-hidden="true" x-show="introComplete" x-transition:enter="transition-opacity duration-500 delay-300" x-transition:enter-end="opacity-100">
+            <i data-lucide="chevron-down" class="w-7 h-7"></i>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <template x-for="(item, i) in content.services" :key="i">
-              <div class="glass-card rounded-2xl p-6 sm:p-8 shadow-soft border border-black/5 card-hover appear visible">
-                <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
-                  <i :data-lucide="item.icon" class="w-6 h-6 text-brand-green-700"></i>
-                </div>
-                <h3 class="text-lg font-semibold mb-2" x-text="item.title"></h3>
-                <p class="text-black/70" x-text="item.text"></p>
-              </div>
-            </template>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Pricing -->
-      <section id="pricing" class="py-16 sm:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-10 sm:mb-12 appear">
-            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Choose Your Package</h2>
-            <p class="mt-3 text-black/70 px-4">Transparent pricing. No surprises.</p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <template x-for="(pkg, idx) in content.pricing" :key="idx">
-              <div class="rounded-2xl p-6 sm:p-8 glass-card border border-black/5 card-hover appear transition relative group visible" :class="{ 'border-2 border-brand-green-300 shadow-glow': pkg.featured }">
-                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none" :style="{ background: pkgGlow(pkg.accent) }"></div>
-                <template x-if="pkg.featured">
-                  <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                    <span class="bg-brand-green-700 text-white px-3 py-1 rounded-full text-xs tracking-wide shadow-soft" x-text="pkg.badgeText || 'Featured'"></span>
+        <!-- Services -->
+        <section id="services" class="py-16 sm:py-20 bg-slate-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-12 appear">
+              <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Our Services</h2>
+              <p class="mt-3 text-black/70 px-4">Structured training, modern techniques, and a patient approach.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              <template x-for="(item, i) in content.services" :key="i">
+                <article class="glass-card rounded-2xl p-6 sm:p-8 shadow-soft border border-black/5 card-hover appear visible">
+                  <div class="w-12 h-12 rounded-full bg-brand-green-50 flex items-center justify-center mb-5 border border-brand-green-100">
+                    <i :data-lucide="item.icon" class="w-6 h-6 text-brand-green-700" aria-hidden="true"></i>
                   </div>
-                </template>
-                <div class="text-center relative">
-                  <h3 class="text-lg font-semibold mb-3" x-text="pkg.name"></h3>
-                  <div class="text-3xl font-semibold text-brand-green-700 mb-1" x-text="pkg.price"></div>
-                  <template x-if="pkg.priceNote">
-                    <p class="text-black/60 mb-6" x-text="pkg.priceNote"></p>
-                  </template>
-                  <ul class="space-y-3 text-black/70 mb-8 text-left">
-                    <template x-for="(f, j) in pkg.features" :key="j">
-                      <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700"></i><span x-text="f"></span></li>
-                    </template>
-                  </ul>
-                  <a :href="pkg.ctaHref" class="block w-full py-3 rounded-full" :class="pkgCtaClass(pkg.accent)" x-text="pkg.ctaText"></a>
-                </div>
-              </div>
-            </template>
-          </div>
-
-          <!-- Satisfaction -->
-          <div class="mt-14 max-w-3xl mx-auto text-center appear">
-            <div class="glass-card rounded-2xl border border-black/5 px-6 py-6">
-              <div class="flex items-center justify-center gap-2 text-lg font-semibold">
-                <i data-lucide="badge-check" class="w-5 h-5 text-brand-green-700"></i>
-                <span>Your Satisfaction Guaranteed</span>
-              </div>
-              <p class="mt-3 text-sm text-black/80">
-                Always check Driving Instructor's Valid Licence before taking in-car lessons. It has come to our attention that lots of driving schools have unqualified and fake driving instructors who don't have valid instructor licences, so please be careful before taking any lesson or commitment. Check their licences for your safety. Don't be fooled by cheap prices and packages.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About -->
-      <section id="about" class="py-16 sm:py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
-            <div class="space-y-6 appear">
-              <h2 class="text-3xl md:text-4xl font-semibold tracking-tight" x-text="content.about.headline"></h2>
-              <p class="text-lg font-semibold" x-text="content.about.tagline"></p>
-              <template x-for="(p, i) in content.about.paragraphs" :key="i">
-                <p class="text-black/80" x-text="p"></p>
+                  <h3 class="text-lg font-semibold mb-2" x-text="item.title"></h3>
+                  <p class="text-black/70" x-text="item.text"></p>
+                </article>
               </template>
             </div>
-            <div class="relative appear">
-              <img :src="content.about.image" alt="Driving instruction" class="rounded-2xl shadow-soft border border-black/5" loading="lazy" />
-              <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-5 shadow-soft border border-black/5">
-                <div class="flex items-center gap-4">
-                  <div class="w-10 h-10 rounded-full bg-brand-green-50 border border-brand-green-100 flex items-center justify-center"><i data-lucide="star" class="w-5 h-5 text-brand-green-700"></i></div>
-                  <div>
-                    <div class="text-xl font-semibold" x-text="content.about.highlight.value"></div>
-                    <div class="text-black/70" x-text="content.about.highlight.label"></div>
+          </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="py-16 sm:py-20 bg-white">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-12 appear">
+              <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Choose Your Package</h2>
+              <p class="mt-3 text-black/70 px-4">Transparent pricing. No surprises.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+              <template x-for="(pkg, idx) in content.pricing" :key="idx">
+                <article class="rounded-2xl p-6 sm:p-8 glass-card border border-black/5 card-hover appear transition relative group visible" :class="{ 'border-2 border-brand-green-300 shadow-glow': pkg.featured }">
+                  <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" :style="{ background: pkgGlow(pkg.accent) }"></div>
+                  <template x-if="pkg.featured">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                      <span class="bg-brand-green-700 text-white px-3 py-1 rounded-full text-xs tracking-wide shadow-soft" x-text="pkg.badgeText || 'Featured'"></span>
+                    </div>
+                  </template>
+                  <div class="text-center relative">
+                    <h3 class="text-lg font-semibold mb-3" x-text="pkg.name"></h3>
+                    <div class="text-3xl font-semibold text-brand-green-700 mb-1" x-text="pkg.price"></div>
+                    <template x-if="pkg.priceNote">
+                      <p class="text-black/60 mb-6" x-text="pkg.priceNote"></p>
+                    </template>
+                    <ul class="space-y-3 text-black/70 mb-8 text-left">
+                      <template x-for="(f, j) in pkg.features" :key="j">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-green-700 flex-shrink-0" aria-hidden="true"></i><span x-text="f"></span></li>
+                      </template>
+                    </ul>
+                    <a :href="pkg.ctaHref" class="block w-full py-3 rounded-full transition-colors focus-visible:ring-2" :class="pkgCtaClass(pkg.accent)" x-text="pkg.ctaText"></a>
+                  </div>
+                </article>
+              </template>
+            </div>
+
+            <!-- Satisfaction -->
+            <div class="mt-14 max-w-3xl mx-auto text-center appear">
+              <div class="glass-card rounded-2xl border border-black/5 px-6 py-6">
+                <div class="flex items-center justify-center gap-2 text-lg font-semibold">
+                  <i data-lucide="badge-check" class="w-5 h-5 text-brand-green-700" aria-hidden="true"></i>
+                  <span>Your Satisfaction Guaranteed</span>
+                </div>
+                <p class="mt-3 text-sm text-black/80">
+                  Always check Driving Instructor's Valid Licence before taking in-car lessons. It has come to our attention that lots of driving schools have unqualified and fake driving instructors who don't have valid instructor licences, so please be careful before taking any lesson or commitment. Check their licences for your safety. Don't be fooled by cheap prices and packages.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="py-16 sm:py-20 bg-slate-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
+              <div class="space-y-6 appear">
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight" x-text="content.about.headline"></h2>
+                <p class="text-lg font-semibold text-brand-green-700" x-text="content.about.tagline"></p>
+                <template x-for="(p, i) in content.about.paragraphs" :key="i">
+                  <p class="text-black/80" x-text="p"></p>
+                </template>
+              </div>
+              <div class="relative appear">
+                <img :src="content.about.image" alt="Driving instruction at Drive In Canada" class="rounded-2xl shadow-soft border border-black/5" loading="lazy" width="1024" height="475" />
+                <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-5 shadow-soft border border-black/5">
+                  <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-brand-green-50 border border-brand-green-100 flex items-center justify-center"><i data-lucide="star" class="w-5 h-5 text-brand-green-700" aria-hidden="true"></i></div>
+                    <div>
+                      <div class="text-xl font-semibold" x-text="content.about.highlight.value"></div>
+                      <div class="text-black/70" x-text="content.about.highlight.label"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Testimonials -->
-      <section id="testimonials" class="py-16 sm:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-10 sm:mb-12 appear">
-            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Student Reviews</h2>
-            <p class="mt-3 text-black/70 px-4">We love our students — and they love us.</p>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <template x-for="(t, i) in content.testimonials" :key="i">
-              <div class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear visible">
-                <div class="flex items-center gap-1 mb-3" aria-label="5 stars">
-                  <i data-lucide="star" class="w-5 h-5 text-amber-500" fill="currentColor" stroke="none"></i>
-                  <i data-lucide="star" class="w-5 h-5 text-amber-500" fill="currentColor" stroke="none"></i>
-                  <i data-lucide="star" class="w-5 h-5 text-amber-500" fill="currentColor" stroke="none"></i>
-                  <i data-lucide="star" class="w-5 h-5 text-amber-500" fill="currentColor" stroke="none"></i>
-                  <i data-lucide="star" class="w-5 h-5 text-amber-500" fill="currentColor" stroke="none"></i>
-                </div>
-                <p class="mb-4 italic" x-text="'“' + t.quote + '”'"></p>
-                <div class="font-medium" x-text="'— ' + t.author"></div>
-              </div>
-            </template>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="py-16 sm:py-20 bg-slate-50">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto px-4 sm:px-6">
-          <!-- LEFT: Google Map -->
-          <div class="appear -mx-4 sm:mx-0">
-            <div class="sm:rounded-2xl overflow-hidden border-0 sm:border border-black/5 shadow-soft h-[320px] sm:h-[380px] lg:h-[460px]">
-              <iframe title="Drive In Canada — Map" :src="content.contact.mapEmbed" class="w-full h-full" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Testimonials -->
+        <section id="testimonials" class="py-16 sm:py-20 bg-white">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-12 appear">
+              <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Student Reviews</h2>
+              <p class="mt-3 text-black/70 px-4">We love our students — and they love us.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              <template x-for="(t, i) in content.testimonials" :key="i">
+                <article class="bg-white rounded-2xl p-6 border border-black/5 shadow-soft appear visible">
+                  <div class="flex items-center gap-1 mb-3" aria-label="5 out of 5 stars">
+                    <template x-for="n in 5" :key="n">
+                      <i data-lucide="star" class="w-5 h-5 text-amber-500" fill="currentColor" stroke="none" aria-hidden="true"></i>
+                    </template>
+                  </div>
+                  <blockquote class="mb-4 italic text-black/80">"<span x-text="t.quote"></span>"</blockquote>
+                  <cite class="font-medium not-italic" x-text="`— ${t.author}`"></cite>
+                </article>
+              </template>
             </div>
           </div>
-          <!-- RIGHT: Contact info -->
-          <div class="space-y-6 appear px-0">
-            <h3 class="text-2xl font-semibold text-center sm:text-left">Start Your Journey Today</h3>
-            <p class="text-black/70 text-center sm:text-left">Ready to become a confident, safe driver? Book your first lesson or ask us anything about the program.</p>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-16 sm:py-20 bg-slate-50">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto px-4 sm:px-6">
+            <!-- Google Map -->
+            <div class="appear -mx-4 sm:mx-0">
+              <div class="sm:rounded-2xl overflow-hidden border-0 sm:border border-black/5 shadow-soft h-[320px] sm:h-[380px] lg:h-[460px]">
+                <iframe title="Drive In Canada location in Mississauga, Ontario" :src="content.contact.mapEmbed" class="w-full h-full" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+            <!-- Contact info -->
+            <div class="space-y-6 appear px-0">
+              <h3 class="text-2xl font-semibold text-center sm:text-left">Start Your Journey Today</h3>
+              <p class="text-black/70 text-center sm:text-left">Ready to become a confident, safe driver? Book your first lesson or ask us anything about the program.</p>
+              <div class="space-y-4">
+                <a :href="content.contact.phoneHref" class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5 hover:border-brand-green-300 hover:shadow-soft transition-all group">
+                  <div class="bg-brand-red-600 text-white rounded-full p-3 group-hover:scale-110 transition-transform"><i data-lucide="phone" class="w-5 h-5" aria-hidden="true"></i></div>
+                  <div>
+                    <div class="font-medium">Call Us</div>
+                    <div class="text-black/70" x-text="content.contact.phone"></div>
+                  </div>
+                </a>
+                <a :href="content.contact.emailHref" class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5 hover:border-brand-green-300 hover:shadow-soft transition-all group">
+                  <div class="bg-brand-green-700 text-white rounded-full p-3 group-hover:scale-110 transition-transform"><i data-lucide="mail" class="w-5 h-5" aria-hidden="true"></i></div>
+                  <div>
+                    <div class="font-medium">Email Us</div>
+                    <div class="text-black/70" x-text="content.contact.email"></div>
+                  </div>
+                </a>
+                <div class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5">
+                  <div class="bg-black text-white rounded-full p-3"><i data-lucide="map-pin" class="w-5 h-5" aria-hidden="true"></i></div>
+                  <div>
+                    <div class="font-medium">Visit Us</div>
+                    <div class="text-black/70" x-text="content.contact.location"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-16 pb-20 bg-white">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-12 appear">
+              <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Frequently Asked Questions</h2>
+            </div>
+
             <div class="space-y-4">
-              <a :href="content.contact.phoneHref" class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5 hover:border-brand-green-300 hover:shadow-soft transition">
-                <div class="bg-brand-red-600 text-white rounded-full p-3"><i data-lucide="phone" class="w-5 h-5"></i></div>
-                <div>
-                  <div class="font-medium">Call Us</div>
-                  <div class="text-black/70" x-text="content.contact.phone"></div>
+              <template x-for="(item, idx) in content.faq" :key="idx">
+                <div x-show="faqShowAll || idx < 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-2xl border border-emerald-100 shadow-soft overflow-hidden">
+                  <button @click="faqOpen = (faqOpen === idx ? null : idx)" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-emerald-50/40 transition-colors focus-visible:bg-emerald-50/60" :aria-expanded="(faqOpen===idx).toString()" :aria-controls="`faq-answer-${idx}`">
+                    <span class="font-medium pr-4" x-text="item.q"></span>
+                    <i data-lucide="chevron-down" class="w-5 h-5 flex-shrink-0 transition-transform duration-300 text-brand-green-700" :class="{ 'rotate-180': faqOpen===idx }" aria-hidden="true"></i>
+                  </button>
+                  <div :id="`faq-answer-${idx}`" x-show="faqOpen===idx" x-collapse x-cloak>
+                    <div class="px-6 pb-5 text-black/80" x-text="item.a"></div>
+                  </div>
                 </div>
-              </a>
-              <a :href="content.contact.emailHref" class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5 hover:border-brand-green-300 hover:shadow-soft transition">
-                <div class="bg-brand-green-700 text-white rounded-full p-3"><i data-lucide="mail" class="w-5 h-5"></i></div>
-                <div>
-                  <div class="font-medium">Email Us</div>
-                  <div class="text-black/70" x-text="content.contact.email"></div>
-                </div>
-              </a>
-              <div class="flex items-center gap-4 p-4 glass-card rounded-2xl border border-black/5">
-                <div class="bg-black text-white rounded-full p-3"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
-                <div>
-                  <div class="font-medium">Visit Us</div>
-                  <div class="text-black/70" x-text="content.contact.location"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              </template>
 
-      <!-- FAQ -->
-      <section id="faq" class="py-16 pb-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6">
-          <div class="text-center mb-10 sm:mb-12 appear">
-            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Frequently Asked Questions</h2>
-          </div>
-
-          <div class="space-y-4">
-            <template x-for="(item, idx) in content.faq" :key="idx">
-              <div x-show="faqShowAll || idx < 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="bg-white rounded-2xl border border-emerald-100 shadow-soft overflow-hidden">
-                <button @click="faqOpen = (faqOpen === idx ? null : idx)" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-emerald-50/40 transition-colors" :aria-expanded="(faqOpen===idx).toString()">
-                  <span class="font-medium pr-4" x-text="item.q"></span>
-                  <i data-lucide="chevron-down" class="w-5 h-5 flex-shrink-0 transition-transform duration-300" :class="{ 'rotate-180': faqOpen===idx }" aria-hidden="true"></i>
+              <div class="text-center mt-8">
+                <button @click="faqShowAll = !faqShowAll; $nextTick(() => { if (window.lucide) lucide.createIcons(); })" class="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full border border-gray-200 hover:border-brand-green-300 hover:bg-brand-green-50 transition-all focus-visible:ring-2 focus-visible:ring-brand-green-300">
+                  <span x-text="faqShowAll ? 'Show Less' : 'Show More Questions'"></span>
+                  <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" :class="{ 'rotate-180': faqShowAll }" aria-hidden="true"></i>
                 </button>
-                <div x-show="faqOpen===idx" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0" class="overflow-hidden">
-                  <div class="px-6 pb-5 text-black/80" x-text="item.a"></div>
-                </div>
               </div>
-            </template>
-
-            <div class="text-center mt-8">
-              <button @click="faqShowAll = !faqShowAll; $nextTick(() => { if (window.lucide) lucide.createIcons(); })" class="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full border border-gray-200 hover:border-brand-green-300 hover:bg-brand-green-50 transition-all">
-                <span x-text="faqShowAll ? 'Show Less' : 'Show More Questions'"></span>
-                <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" :class="{ 'rotate-180': faqShowAll }" aria-hidden="true"></i>
-              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <!-- Footer -->
       <footer class="relative bg-gradient-to-br from-brand-green-800 via-brand-green-700 to-brand-green-900 text-white pt-14 pb-10 rounded-t-3xl">
@@ -596,7 +825,7 @@
             <div>
               <div class="flex flex-col gap-3 mb-4">
                 <div class="flex items-center gap-2">
-                  <img src="https://i.ibb.co/qFVWDkxr/6921c13a-843a-4e8f-9348-6e179d4927d1.png" alt="Drive In Canada Logo" class="w-8 h-8" />
+                  <img src="https://i.ibb.co/qFVWDkxr/6921c13a-843a-4e8f-9348-6e179d4927d1.png" alt="" class="w-8 h-8" width="32" height="32" />
                   <span class="text-lg font-semibold tracking-tight" x-text="content.brand.name"></span>
                 </div>
                 <p class="text-white/80 text-sm italic" x-text="content.brand.slogan"></p>
@@ -606,10 +835,10 @@
             <div>
               <h4 class="font-medium mb-4">Quick Links</h4>
               <ul class="space-y-2 text-white/80">
-                <li><a href="#services" class="hover:text-white">Services</a></li>
-                <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
-                <li><a href="#about" class="hover:text-white">About</a></li>
-                <li><a href="#testimonials" class="hover:text-white">Reviews</a></li>
+                <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+                <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+                <li><a href="#testimonials" class="hover:text-white transition-colors">Reviews</a></li>
               </ul>
             </div>
             <div>
@@ -621,47 +850,45 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-medium mb-4">Follow</h4>
+              <h4 class="font-medium mb-4">Follow Us</h4>
               <div class="flex gap-3 items-center">
-                <a :href="content.socials.facebook" class="bg-white/10 p-2 rounded-full hover:bg-white/20" aria-label="Drive in Canada on Facebook" title="Visit Drive in Canada on Facebook" target="_blank" rel="noopener nofollow"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                <a :href="content.socials.x" class="bg-white/10 p-2 rounded-full hover:bg-white/20" aria-label="Drive in Canada on X" title="Follow Drive in Canada on X" target="_blank" rel="noopener nofollow">
-                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <a :href="content.socials.facebook" class="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="Follow Drive In Canada on Facebook" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook" class="w-5 h-5" aria-hidden="true"></i></a>
+                <a :href="content.socials.x" class="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="Follow Drive In Canada on X" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <!-- TikTok -->
-                <a :href="content.socials.tiktok"
-                class="bg-white/10 p-2 rounded-full hover:bg-white/20"
-                aria-label="Drive in Canada on TikTok"
-                title="Follow Drive in Canada on TikTok"
-                target="_blank" rel="noopener nofollow">
-                <!-- Simple TikTok SVG (keeps Lucide look) -->
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M21 8.5a6.9 6.9 0 0 1-4.2-1.5v7.2a5.7 5.7 0 1 1-5.8-5.7 5.5 5.5 0 0 1 1.3.16v2.55a3.2 3.2 0 1 0 2.3 3.08V2.75h2.4a6.9 6.9 0 0 0 4 4.2z"/>
-                </svg>
+                <a :href="content.socials.tiktok" class="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="Follow Drive In Canada on TikTok" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 8.5a6.9 6.9 0 0 1-4.2-1.5v7.2a5.7 5.7 0 1 1-5.8-5.7 5.5 5.5 0 0 1 1.3.16v2.55a3.2 3.2 0 1 0 2.3 3.08V2.75h2.4a6.9 6.9 0 0 0 4 4.2z"/></svg>
                 </a>
-
-                <a :href="content.socials.email" class="bg-white/10 p-2 rounded-full hover:bg-white/20" aria-label="Email Drive in Canada" title="Email Drive in Canada" target="_blank" rel="noopener"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                <a :href="content.socials.email" class="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors" aria-label="Email Drive In Canada" target="_blank" rel="noopener"><i data-lucide="mail" class="w-5 h-5" aria-hidden="true"></i></a>
               </div>
             </div>
           </div>
           <div class="mt-8 pt-6 border-t border-white/20 text-center text-white/80">
-            <p>Made by <a href="mailto:abdullah.khan@queensu.ca" class="email-link font-medium">Abdullah Khan</a> • &copy; <span id="year"></span> Drive In Canada. All rights reserved.</p>
+            <p>Made by <a href="mailto:abdullah.khan@queensu.ca" class="font-medium hover:text-white transition-colors">Abdullah Khan</a> · © <span id="year"></span> Drive In Canada. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
 
-    <script>
-      // ——— Year ———
-      const yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    <!-- Noscript fallback -->
+    <noscript>
+      <style>.intro-overlay{display:none}[x-cloak]{display:block!important}</style>
+      <div style="padding:2rem;text-align:center">
+        <h1>Drive In Canada</h1>
+        <p>Please enable JavaScript to view this website, or call us at (647) 892-6797.</p>
+      </div>
+    </noscript>
 
-      // ——— Reveal on scroll ———
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Reveal on scroll
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
       }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
       document.querySelectorAll('.appear').forEach((el) => revealObserver.observe(el));
 
-      // ——— Smooth anchor scroll ———
+      // Smooth anchor scroll
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
@@ -671,7 +898,7 @@
         });
       });
 
-      // ——— Active nav highlight ———
+      // Active nav highlight
       const navLinks = document.querySelectorAll('[data-nav]');
       const sectionIds = Array.from(document.querySelectorAll('section[id]')).map(s => s.id);
       const sectionObserver = new IntersectionObserver((entries) => {
@@ -688,9 +915,10 @@
       });
     </script>
 
+    <!-- Alpine collapse plugin for smoother FAQ -->
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-      // Run after DOM is ready and after lucide has loaded
       window.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
     </script>
   </body>
